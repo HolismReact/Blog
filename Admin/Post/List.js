@@ -1,7 +1,8 @@
-import { List, Text, Enum } from '@List'
+import { List, Text as TextFilter, Enum } from '@List'
+import { Form, Text, Slug } from '@Form'
 
 const filters = <>
-    <Text
+    <TextFilter
         column='Title'
         placehodler='Title'
     />
@@ -24,6 +25,24 @@ const row = (item) => <>
     <td>{item.state}</td>
 </>
 
+const inputs = <>
+    <Text
+        column="Title"
+        placehodler="Title"
+        required="Title is not written"
+    />
+    <Slug
+    />
+</>
+
+const CreatePost = () => {
+    return <Form
+        title="Create a post"
+        entityType='BlogPost'
+        inputs={inputs}
+    />
+}
+
 const BlogPosts = () => {
     return <List
         title='Posts'
@@ -31,6 +50,7 @@ const BlogPosts = () => {
         filters={filters}
         headers={headers}
         row={row}
+        create={CreatePost}
     />
 }
 
