@@ -1,5 +1,5 @@
-import { List, Text as TextFilter, Enum } from '@List'
-import { Form, Text, Slug } from '@Form'
+import { List, Text as TextFilter, Enum, ValueWithTitle } from '@List'
+import { Form, Text, LongText, Slug } from '@Form'
 
 const filters = <>
     <TextFilter
@@ -20,7 +20,12 @@ const headers = <>
 </>
 
 const row = (item) => <>
-    <td>{item.title}</td>
+    <td>
+        <ValueWithTitle 
+            value={item.title}
+            title={item.summary}
+        />
+    </td>
     <td>{item.date}</td>
     <td>{item.state}</td>
 </>
@@ -31,7 +36,10 @@ const inputs = <>
         placehodler="Title"
         required="Title is not written"
     />
-    <Slug
+    <Slug />
+    <LongText
+        column="Summary"
+        placehodler="Summary"
     />
 </>
 
@@ -51,6 +59,8 @@ const BlogPosts = () => {
         headers={headers}
         row={row}
         create={CreatePost}
+        hasEdit={true}
+        hasDelete={true}
     />
 }
 
