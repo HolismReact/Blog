@@ -24,14 +24,14 @@ const row = (item) => <>
     <td>{item.state}</td>
 </>
 
-const Posts = () => {
+const BlogPosts = () => {
     return <List
         title='Posts'
-        entityType='Post'
+        entityType='BlogPost'
         filters={filters}
         headers={headers}
         row={row}
     />
 }
 
-export default Posts
+export default BlogPosts
