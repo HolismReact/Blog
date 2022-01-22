@@ -19,26 +19,38 @@ const headers = <>
     <th>State</th>
 </>
 
-const row = (item) => <>
-    <td>
-        <a target='_blank' href={`${app.env('BLOG_URL')}/${item.slug}`}>
-            <TitleSubtitle
-                title={<ValueWithTitle
-                    value={item.title}
-                    title={item.summary}
-                />}
-                subtitle={item.slug}
+const row = (item) => {
+    let stateStyle = "";
+    switch (item.stateKey) {
+        case "Draft":
+        default:
+            stateStyle = "bg-red-400 text-white";
+            break;
+        case "Published":
+            stateStyle = "bg-green-400";
+            break;
+    }
+    return <>
+        <td>
+            <a target='_blank' href={`${app.env('BLOG_URL')}/${item.slug}`}>
+                <TitleSubtitle
+                    title={<ValueWithTitle
+                        value={item.title}
+                        title={item.summary}
+                    />}
+                    subtitle={item.slug}
+                />
+            </a>
+        </td>
+        <td>
+            <DateTimeTitleAgo
+                date={item.utcDate}
+                ago={item.relatedItems.timeAgo}
             />
-        </a>
-    </td>
-    <td>
-        <DateTimeTitleAgo
-            date={item.utcDate}
-            ago={item.relatedItems.timeAgo}
-        />
-    </td>
-    <td>{item.state}</td>
-</>
+        </td>
+        <td>{item.state}</td>
+    </>
+}
 
 const inputs = <>
     <Text
