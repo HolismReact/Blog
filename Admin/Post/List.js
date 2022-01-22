@@ -1,4 +1,4 @@
-import { List, Text as TextFilter, Enum, ValueWithTitle } from '@List'
+import { List, Text as TextFilter, Enum, ValueWithTitle, DateTimeTitleAgo, app } from '@List'
 import { Form, Text, LongText, Slug } from '@Form'
 
 const filters = <>
@@ -20,13 +20,23 @@ const headers = <>
 </>
 
 const row = (item) => <>
+    <td className="text-left">
+        <a className="text-lg font-bold " target='_blank' href={`${app.trim(process.env.REACT_APP_BLOG_URL || '', '/')}/${item.slug}`}>
+            <ValueWithTitle
+                value={item.title}
+                title={item.summary}
+            />
+        </a>
+        <div className="text-xs text-gray-400">
+            {item.slug}
+        </div>
+    </td>
     <td>
-        <ValueWithTitle 
-            value={item.title}
-            title={item.summary}
+        <DateTimeTitleAgo
+            date={item.utcDate}
+            ago={item.relatedItems.timeAgo}
         />
     </td>
-    <td>{item.date}</td>
     <td>{item.state}</td>
 </>
 
@@ -45,8 +55,9 @@ const inputs = <>
 
 const CreatePost = () => {
     return <Form
-        title="Create a post"
+        // title={(mode) => mode === app.formMode.creation ? 'Create a post' : 'Edit the post'}
         entityType='BlogPost'
+        humanReadableEntityType='Post'
         inputs={inputs}
     />
 }
