@@ -1,4 +1,3 @@
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { List, Text, Enum, ItemAction, Chip, ValueWithTitle, DateTimeTitleAgo, TitleSubtitle, app } from '@List'
 import UpsertPost from './Upsert'
 import ManageTags from '../../Taxonomy/Tag/Manage'
@@ -12,7 +11,7 @@ const filters = <>
     <Enum
         column='StateId'
         placeholder='State'
-        entityType='postState'
+        entityType='BlogPostState'
     />
 </>
 
@@ -60,11 +59,10 @@ const row = (item) => {
     </>
 }
 
-const itemActions = <>
-    <ItemAction
-        title='Manage tags'
-        icon={LocalOfferIcon}
-        dialog={ManageTags}
+const itemActions = (item) => <>
+    <ManageTags
+        entityType='BlogPost'
+        entity={item.guid}
     />
 </>
 
