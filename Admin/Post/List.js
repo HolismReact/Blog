@@ -1,8 +1,11 @@
-import { List, Text as TextFilter, Enum, ValueWithTitle, DateTimeTitleAgo, TitleSubtitle, app } from '@List'
-import { Form, Text, LongText, Slug } from '@Form'
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import { List, Text, Enum, ItemAction, Chip, ValueWithTitle, DateTimeTitleAgo, TitleSubtitle, app } from '@List'
+import UpsertPost from './Upsert'
+import ManageTags from '../../Taxonomy/Tag/Manage'
+// import ManageHierarchies from './AdminPanel/Taxonomy/Hierarchy/ManageHierarchies'
 
 const filters = <>
-    <TextFilter
+    <Text
         column='Title'
         placehodler='Title'
     />
@@ -48,31 +51,22 @@ const row = (item) => {
                 ago={item.relatedItems.timeAgo}
             />
         </td>
-        <td>{item.state}</td>
+        <td>
+            <Chip
+                className={stateStyle}
+                text={item.relatedItems.stateKey}
+            />
+        </td>
     </>
 }
 
-const inputs = <>
-    <Text
-        column="Title"
-        placehodler="Title"
-        required="Title is not written"
-    />
-    <Slug />
-    <LongText
-        column="Summary"
-        placehodler="Summary"
+const itemActions = <>
+    <ItemAction
+        title='Manage tags'
+        icon={LocalOfferIcon}
+        dialog={ManageTags}
     />
 </>
-
-const CreatePost = () => {
-    return <Form
-        // title={(mode) => mode === app.formMode.creation ? 'Create a post' : 'Edit the post'}
-        entityType='BlogPost'
-        humanReadableEntityType='Post'
-        inputs={inputs}
-    />
-}
 
 const BlogPosts = () => {
     return <List
@@ -81,9 +75,10 @@ const BlogPosts = () => {
         filters={filters}
         headers={headers}
         row={row}
-        create={CreatePost}
+        create={UpsertPost}
         hasEdit={true}
         hasDelete={true}
+        itemActions={itemActions}
     />
 }
 
