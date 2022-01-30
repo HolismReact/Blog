@@ -62,7 +62,7 @@ const row = (item) => {
 const itemActions = (item) => <>
     <ManageTags
         entityType='BlogPost'
-        entity={item.guid}
+        entityGuid={item.guid}
     />
 </>
 
@@ -77,6 +77,7 @@ const BlogPosts = () => {
         hasEdit={true}
         hasDelete={true}
         itemActions={itemActions}
+        // dialogs={[UpsertPost, ManageTags]}
     />
 }
 
