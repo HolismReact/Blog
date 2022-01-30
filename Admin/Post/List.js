@@ -11,7 +11,7 @@ const filters = <>
     <Enum
         column='StateId'
         placeholder='State'
-        entityType='BlogPostState'
+        entityType='BlogState'
     />
 </>
 
