@@ -1,4 +1,5 @@
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import FindInPageIcon from '@mui/icons-material/FindInPage';
 import { List, Text, Enum, ItemAction, Image, BooleanProperty, Chip, ValueWithTitle, DateTimeTitleAgo, TitleSubtitle, app } from '@List'
 import UpsertPost from './Upsert'
 import ManageTags from '../../Taxonomy/Tag/Manage'
@@ -76,6 +77,11 @@ const row = (item) => {
 }
 
 const itemActions = (item) => <>
+    <ItemAction
+        title='Manage SEO'
+        icon={FindInPageIcon}
+        goTo={`/entityParameter?entityType=blogPost&entityGuid=${item.guid}`}
+    />
     <ItemAction
         title='Edit content'
         icon={TextSnippetIcon}
