@@ -1,5 +1,5 @@
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
-import { List, Text, Enum, ItemAction, Image, Chip, ValueWithTitle, DateTimeTitleAgo, TitleSubtitle, app } from '@List'
+import { List, Text, Enum, ItemAction, Image, BooleanProperty, Chip, ValueWithTitle, DateTimeTitleAgo, TitleSubtitle, app } from '@List'
 import UpsertPost from './Upsert'
 import ManageTags from '../../Taxonomy/Tag/Manage'
 // import ManageHierarchies from './AdminPanel/Taxonomy/Hierarchy/ManageHierarchies'
@@ -21,6 +21,7 @@ const headers = <>
     <th>Title</th>
     <th>Date</th>
     <th>State</th>
+    <th>Comments enabled?</th>
 </>
 
 const row = (item) => {
@@ -62,6 +63,14 @@ const row = (item) => {
             <Chip
                 className={stateStyle}
                 text={item.relatedItems.stateKey}
+            />
+        </td>
+        <td>
+            <BooleanProperty
+                //title={item.isActive ? 'Yes, click to deactivate' : 'No, click to activate'}
+                column='isActive'
+                value={item.isActive}
+                action={`/blogPost/toggleCommentAcceptance/${item.id}`}
             />
         </td>
     </>
