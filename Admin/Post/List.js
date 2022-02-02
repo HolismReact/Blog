@@ -67,10 +67,9 @@ const row = (item) => {
         </td>
         <td>
             <BooleanProperty
-                //title={item.isActive ? 'Yes, click to deactivate' : 'No, click to activate'}
-                column='isActive'
-                value={item.isActive}
-                action={`/blogPost/toggleCommentAcceptance/${item.id}`}
+                column='acceptsComment'
+                value={item.acceptsComment}
+                actionUrl={`/blogPost/toggleCommentAcceptance/${item.id}`}
             />
         </td>
     </>
