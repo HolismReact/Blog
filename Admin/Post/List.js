@@ -1,4 +1,5 @@
-import { List, Text, Enum, ItemAction, Chip, ValueWithTitle, DateTimeTitleAgo, TitleSubtitle, app } from '@List'
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import { List, Text, Enum, ItemAction, Image, Chip, ValueWithTitle, DateTimeTitleAgo, TitleSubtitle, app } from '@List'
 import UpsertPost from './Upsert'
 import ManageTags from '../../Taxonomy/Tag/Manage'
 // import ManageHierarchies from './AdminPanel/Taxonomy/Hierarchy/ManageHierarchies'
@@ -16,6 +17,7 @@ const filters = <>
 </>
 
 const headers = <>
+    <th></th>
     <th>Title</th>
     <th>Date</th>
     <th>State</th>
@@ -34,6 +36,12 @@ const row = (item) => {
     }
     return <>
         <td>
+            <Image
+                url={item.relatedItems.imageUrl}
+                uploadUrl={`/blogPost/setImage?postId=${item.id}`}
+            />
+        </td>
+        <td>
             <a target='_blank' href={`${app.env('BLOG_URL')}/${item.slug}`}>
                 <TitleSubtitle
                     title={<ValueWithTitle
@@ -46,8 +54,8 @@ const row = (item) => {
         </td>
         <td>
             <DateTimeTitleAgo
-                date={item.utcDate}
-                ago={item.relatedItems.timeAgo}
+                date={item.lastUpdateUtcDate || item.utcDate}
+                ago={item.relatedItems.lastUpdateTimeAgo || item.relatedItems.timeAgo}
             />
         </td>
         <td>
@@ -60,6 +68,11 @@ const row = (item) => {
 }
 
 const itemActions = (item) => <>
+    <ItemAction
+        title='Edit content'
+        icon={TextSnippetIcon}
+        goTo={`/post/editContent?postId=${item.id}`}
+    />
     <ManageTags
         entityType='BlogPost'
         entityGuid={item.guid}
@@ -77,7 +90,7 @@ const BlogPosts = () => {
         hasEdit={true}
         hasDelete={true}
         itemActions={itemActions}
-        // dialogs={[UpsertPost, ManageTags]}
+    // dialogs={[UpsertPost, ManageTags]}
     />
 }
 
