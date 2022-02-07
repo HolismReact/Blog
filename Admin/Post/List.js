@@ -109,3 +109,4 @@ const BlogPosts = () => {
 }
 
 export default BlogPosts
+export { BlogPosts }
