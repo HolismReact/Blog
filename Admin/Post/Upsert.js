@@ -17,7 +17,7 @@ const UpsertPost = () => {
     return <Form
         // title={(mode) => mode === app.formMode.creation ? 'Create a post' : 'Edit the post'}
         entityType='BlogPost'
-        humanReadableEntityType='Post'
+        // humanReadableEntityType='Post'
         inputs={inputs}
     />
 }
