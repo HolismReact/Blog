@@ -10,7 +10,7 @@ const inputs = <>
 const PostContent = () => {
     return <Form
         title='Edit content'
-        entityType="PostContent"
+        entityType="BlogPostContent"
         inputs={inputs}
         large={true}
     />
