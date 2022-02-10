@@ -85,7 +85,7 @@ const itemActions = (item) => <>
     <ItemAction
         title='Edit content'
         icon={TextSnippetIcon}
-        goTo={`/post/editContent?postId=${item.id}`}
+        goTo={`/post/editContent?id=${item.id}`}
     />
     <ManageTags
         entityType='BlogPost'
