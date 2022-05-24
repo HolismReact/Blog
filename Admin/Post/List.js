@@ -47,7 +47,7 @@ const row = (item) => {
             <a target='_blank' href={`${app.env('BLOG_URL')}/${item.slug}`}>
                 <TitleSubtitle
                     title={<ValueWithTitle
-                        value={item.title}
+                        value={item.title.cut(30)}
                         title={item.summary}
                     />}
                     subtitle={item.slug}
