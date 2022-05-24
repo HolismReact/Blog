@@ -28,7 +28,7 @@ const BlogMenu = [
             },
             {
                 "title": "Categories",
-                "url": "/hierarchies?entityType=blogPost"
+                "url": "/blogCategories"
             },
             {
                 "title": "Tags",
