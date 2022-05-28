@@ -81,7 +81,7 @@ const itemActions = (item) => <>
         entityType='BlogPost'
         entityGuid={item.guid}
     />
-    <ItemAction
+    {/* <ItemAction
         title='Edit content'
         icon={TextSnippetIcon}
         goTo={`/post/editContent?id=${item.id}`}
@@ -89,7 +89,7 @@ const itemActions = (item) => <>
     <ManageTags
         entityType='BlogPost'
         entityGuid={item.guid}
-    />
+    /> */}
 </>
 
 const BlogPosts = () => {
