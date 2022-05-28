@@ -2,7 +2,7 @@ import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import { List, Text, Enum, ItemAction, Image, BooleanProperty, Chip, ValueWithTitle, DateTimeTitleAgo, TitleSubtitle, app } from '@List'
 import UpsertPost from './Upsert'
 import ManageTags from '../../Taxonomy/Tag/Manage'
-import EntitySeo from '../../Seo/EntityParameter/ItemAction'
+import { EntitySeo } from '../../Seo/Exports'
 // import ManageHierarchies from './AdminPanel/Taxonomy/Hierarchy/ManageHierarchies'
 
 const filters = <>
