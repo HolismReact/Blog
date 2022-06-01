@@ -1,8 +1,10 @@
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import { List, Text, Enum, ItemAction, Image, BooleanProperty, Chip, ValueWithTitle, DateTimeTitleAgo, TitleSubtitle, app } from '@List'
 import UpsertPost from './Upsert'
-import ManageTags from '../../Taxonomy/Tag/Manage'
+import { ManageTags } from '../../Taxonomy/Exports'
+import { ManageHierarchies } from '../../Taxonomy/Exports'
 import { EntitySeo } from '../../Seo/Exports'
+import { ViewComments } from '../../Social/Exports'
 // import ManageHierarchies from './AdminPanel/Taxonomy/Hierarchy/ManageHierarchies'
 
 const filters = <>
@@ -77,7 +79,7 @@ const row = (item) => {
 }
 
 const itemActions = (item) => <>
-    <EntitySeo 
+    <EntitySeo
         entityType='BlogPost'
         entityGuid={item.guid}
     />
@@ -87,6 +89,15 @@ const itemActions = (item) => <>
         goTo={`/post/editContent?id=${item.id}`}
     />
     <ManageTags
+        entityType='BlogPost'
+        entityGuid={item.guid}
+    />
+    <ManageHierarchies
+        title='Manage categories'
+        entityType='BlogPost'
+        entityGuid={item.guid}
+    />
+    <ViewComments
         entityType='BlogPost'
         entityGuid={item.guid}
     />
