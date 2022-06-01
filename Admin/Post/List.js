@@ -114,7 +114,7 @@ const BlogPosts = () => {
         hasEdit={true}
         hasDelete={true}
         itemActions={itemActions}
-        separateRowForActions={true}
+        // separateRowForActions={true}
         menuForActions={true}
     // dialogs={[UpsertPost, ManageTags]}
     />
