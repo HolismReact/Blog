@@ -30,7 +30,7 @@ const headers = <>
 const row = (item) => {
 
     const styleProvider = (enumKey) => {
-        switch (item.stateKey) {
+        switch (enumKey) {
             case "Draft":
             default:
                 return "bg-red-400 text-white";
@@ -65,7 +65,9 @@ const row = (item) => {
         </td>
         <td>
             <EnumProperty
+                enumeration='BlogState'
                 column='StateId'
+                styleProvider={styleProvider}
                 currentText={item.relatedItems.stateKey}
                 currentStyle={styleProvider(item.relatedItems.stateKey)}
                 actionUrl={`/blogPost/changeState/${item.id}`}
