@@ -68,7 +68,7 @@ const row = (item) => {
                 enumeration='BlogState'
                 column='StateId'
                 styleProvider={styleProvider}
-                currentText={item.relatedItems.stateKey}
+                currentKey={item.relatedItems.stateKey}
                 currentStyle={styleProvider(item.relatedItems.stateKey)}
                 actionUrl={`/blogPost/changeState/${item.id}`}
             />
