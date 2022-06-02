@@ -1,5 +1,5 @@
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
-import { List, Text, Enum, ItemAction, Image, BooleanProperty, Chip, ValueWithTitle, DateTimeTitleAgo, TitleSubtitle, app } from '@List'
+import { List, Text, Enum, ItemAction, Image, BooleanProperty, Chip, ValueWithTitle, DateTimeTitleAgo, TitleSubtitle, EnumProperty, app } from '@List'
 import UpsertPost from './Upsert'
 import { ManageTags } from '../../Taxonomy/Exports'
 import { ManageHierarchies } from '../../Taxonomy/Exports'
@@ -28,16 +28,17 @@ const headers = <>
 </>
 
 const row = (item) => {
-    let stateStyle = "";
-    switch (item.stateKey) {
-        case "Draft":
-        default:
-            stateStyle = "bg-red-400 text-white";
-            break;
-        case "Published":
-            stateStyle = "bg-green-400";
-            break;
+
+    const styleProvider = (enumKey) => {
+        switch (item.stateKey) {
+            case "Draft":
+            default:
+                return "bg-red-400 text-white";
+            case "Published":
+                return "bg-green-400";
+        }
     }
+
     return <>
         <td>
             <Image
@@ -46,7 +47,7 @@ const row = (item) => {
             />
         </td>
         <td>
-            <a target='_blank' href={`${app.env('BLOG_URL')}/${item.slug}`}>
+            <a target='_blank' href={`${app.env('POST_BASE_URL')}/${item.slug}`}>
                 <TitleSubtitle
                     title={<ValueWithTitle
                         value={item.title.cut(30)}
@@ -63,9 +64,11 @@ const row = (item) => {
             />
         </td>
         <td>
-            <Chip
-                className={stateStyle}
-                text={item.relatedItems.stateKey}
+            <EnumProperty
+                column='StateId'
+                currentText={item.relatedItems.stateKey}
+                currentStyle={styleProvider(item.relatedItems.stateKey)}
+                actionUrl={`/blogPost/changeState/${item.id}`}
             />
         </td>
         <td>
